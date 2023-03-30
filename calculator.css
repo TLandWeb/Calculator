@@ -1,0 +1,66 @@
+. {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+}
+
+button {
+    height: 100px;
+    width: 100px;
+    font-size: 20pt;
+    font-weight:bold;
+}
+
+#numberFrame {
+    height: 100px;
+}
+
+#zero {
+    width: 200px;
+}
+
+#calcContainer {
+    width: 400px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+}
+
+#mainButtons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 320px;
+}
+
+#miscButtons, #numberButtons{
+    display: flex;   
+}
+
+#numberButtons{
+    flex-wrap: wrap;
+}
+
+#numberButtons button{   
+    background-color: rgb(196, 196, 196);
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+}
+
+#operatorButtons Button {
+    background-color: rgb(48, 174, 252);
+}
+
+#miscButtons Button {
+    background-color: orange;
+}
