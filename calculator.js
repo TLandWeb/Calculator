@@ -30,12 +30,31 @@ function operate(a, b, op) {
     }
 }
 
+function firstValue(op) {
+    firstNumber = numberFrame.value;
+    operator = op;
+    numberFrame.value = "";
+    //equation.textContent = `${firstNumber} ${operator}`;
+}
+
+function secondValue() {
+    secondNumber = numberFrame.value;
+    firstNumber = Number(firstNumber);
+    secondNumber = Number(secondNumber);
+    result = operate(firstNumber, secondNumber, operator);
+    
+    numberFrame.value = result;
+}
+
 let firstNumber;
 let secondNumber;
 let operator;
+let result;
 
-const btnOne = document.querySelector('#num1');
 const numberFrame = document.querySelector('#numberFrame');
+const equation = document.querySelector('#equation');
+
+//Event listeners for the number buttons
 document.getElementById('num1').addEventListener('click', function() {
     numberFrame.value = numberFrame.value + "1";
 });
@@ -67,3 +86,9 @@ document.getElementById('num0').addEventListener('click', function() {
     numberFrame.value = numberFrame.value + "0";
 });
 
+//Event listeners for the operator buttons
+document.getElementById('add').addEventListener('click', function(){firstValue('+')});
+document.getElementById('subtract').addEventListener('click', function(){firstValue('-')});
+document.getElementById('multiply').addEventListener('click', function(){firstValue('*')});
+document.getElementById('divide').addEventListener('click', function(){firstValue('/')});
+document.getElementById('equals').addEventListener('click', secondValue);
