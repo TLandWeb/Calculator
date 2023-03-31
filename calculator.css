@@ -5,8 +5,10 @@
 
 body {
     display: flex;
-    justify-content: center;
-    align-content: space-around;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgb(17 24 39);
 }
 
 button {
@@ -33,6 +35,7 @@ button {
     display: flex;
     flex-direction: column;
     background-color: blue;
+    align-self: center;
 }
 
 #mainButtons {
@@ -66,4 +69,8 @@ button {
 
 #miscButtons Button {
     background-color: orange;
+}
+
+#equation {
+    color: white;
 }

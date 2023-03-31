@@ -1,3 +1,4 @@
+//operation functions
 function add(a, b) {
     return a + b;
 }
@@ -20,7 +21,7 @@ function divide(a, b) {
 
 function operate(a, b, op) {
     if (op == "+") {
-        return multiply(a, b);
+        return add(a, b);
     } else if (op == "-") {
         return subtract(a, b);
     } else if (op == "*") {
@@ -30,11 +31,13 @@ function operate(a, b, op) {
     }
 }
 
+//functions triggered by button presses
 function firstValue(op) {
     firstNumber = numberFrame.value;
     operator = op;
     numberFrame.value = "";
-    //equation.textContent = `${firstNumber} ${operator}`;
+    let equation = document.getElementById('equation').textContent + ` ${firstNumber} ${operator}`;
+    document.getElementById('equation').innerHTML = equation;
 }
 
 function secondValue() {
@@ -44,6 +47,17 @@ function secondValue() {
     result = operate(firstNumber, secondNumber, operator);
     
     numberFrame.value = result;
+
+    let equation = document.getElementById('equation').textContent + ` ${secondNumber} = ${result}`;
+    document.getElementById('equation').innerHTML = equation;
+}
+
+function buttonFunc(buttonNum) {
+    if (numberFrame.value == "0") {
+        numberFrame.value = buttonNum;
+    } else {
+        numberFrame.value = numberFrame.value + buttonNum;
+    }
 }
 
 let firstNumber;
@@ -55,36 +69,17 @@ const numberFrame = document.querySelector('#numberFrame');
 const equation = document.querySelector('#equation');
 
 //Event listeners for the number buttons
-document.getElementById('num1').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "1";
-});
-document.getElementById('num2').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "2";
-});
-document.getElementById('num3').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "3";
-});
-document.getElementById('num4').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "4";
-});
-document.getElementById('num5').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "5";
-});
-document.getElementById('num6').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "6";
-});
-document.getElementById('num7').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "7";
-});
-document.getElementById('num8').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "8";
-});
-document.getElementById('num9').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "9";
-});
-document.getElementById('num0').addEventListener('click', function() {
-    numberFrame.value = numberFrame.value + "0";
-});
+document.getElementById('num1').addEventListener('click', function() {buttonFunc('1')});
+document.getElementById('num2').addEventListener('click', function() {buttonFunc('2')});
+document.getElementById('num3').addEventListener('click', function() {buttonFunc('3')});
+document.getElementById('num4').addEventListener('click', function() {buttonFunc('4')});
+document.getElementById('num5').addEventListener('click', function() {buttonFunc('5')});
+document.getElementById('num6').addEventListener('click', function() {buttonFunc('6')});
+document.getElementById('num7').addEventListener('click', function() {buttonFunc('7')});
+document.getElementById('num8').addEventListener('click', function() {buttonFunc('8')});
+document.getElementById('num9').addEventListener('click', function() {buttonFunc('9')});
+document.getElementById('num0').addEventListener('click', function() {buttonFunc('0')});
+document.getElementById('decimal').addEventListener('click', function() {buttonFunc('.')});
 
 //Event listeners for the operator buttons
 document.getElementById('add').addEventListener('click', function(){firstValue('+')});
@@ -92,3 +87,16 @@ document.getElementById('subtract').addEventListener('click', function(){firstVa
 document.getElementById('multiply').addEventListener('click', function(){firstValue('*')});
 document.getElementById('divide').addEventListener('click', function(){firstValue('/')});
 document.getElementById('equals').addEventListener('click', secondValue);
+
+//Event listeners for the AC, C, and +/- buttons
+document.getElementById('clear').addEventListener('click', function() {
+    numberFrame.value = '0';
+    firstNumber = '0';
+    secondNumber = '0';
+})
+document.getElementById('backspace').addEventListener('click', function() {
+
+})
+document.getElementById('signChange').addEventListener('click', function() {
+
+})
