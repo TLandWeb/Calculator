@@ -13,55 +13,67 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b == 0) {
-        return "OOPS";
+        return 'OOPS';
     } else {
         return a / b;
     }  
 }
 
 function operate(a, b, op) {
-    if (op == "+") {
+    if (op == '+') {
         return add(a, b);
-    } else if (op == "-") {
+    } else if (op == '-') {
         return subtract(a, b);
-    } else if (op == "*") {
+    } else if (op == '*') {
         return multiply(a, b);
-    } else if (op == "/") {
+    } else if (op == '/') {
         return divide(a, b);
     }
 }
 
 //functions triggered by button presses
 function firstValue(op) {
-    firstNumber = numberFrame.value;
-    operator = op;
-    numberFrame.value = "";
-    let equation = document.getElementById('equation').textContent + ` ${firstNumber} ${operator}`;
-    document.getElementById('equation').innerHTML = equation;
+    if (firstNumber == '') {
+        firstNumber = numberFrame.value;
+        operator = op;
+        numberFrame.value = '0';
+        let equation = document.getElementById('equation').textContent + ` ${firstNumber} ${operator}`;
+        document.getElementById('equation').innerHTML = equation;
+    } else {
+        operator = op;
+        secondValue();
+    }
 }
 
-function secondValue() {
+function secondValue(equals) {
     secondNumber = numberFrame.value;
     firstNumber = Number(firstNumber);
     secondNumber = Number(secondNumber);
     result = operate(firstNumber, secondNumber, operator);
-    
     numberFrame.value = result;
 
     let equation = document.getElementById('equation').textContent + ` ${secondNumber} = ${result}`;
     document.getElementById('equation').innerHTML = equation;
+
+    if (equals == 1) {
+        firstNumber = '';
+        secondNumber = '';
+    } else {
+        firstNumber = result;
+    }
+   
 }
 
 function buttonFunc(buttonNum) {
-    if (numberFrame.value == "0") {
+    if (numberFrame.value == '0' || numberFrame.value == result) {
         numberFrame.value = buttonNum;
     } else {
         numberFrame.value = numberFrame.value + buttonNum;
     }
 }
 
-let firstNumber;
-let secondNumber;
+let firstNumber = '';
+let secondNumber = '';
 let operator;
 let result;
 
@@ -86,13 +98,13 @@ document.getElementById('add').addEventListener('click', function(){firstValue('
 document.getElementById('subtract').addEventListener('click', function(){firstValue('-')});
 document.getElementById('multiply').addEventListener('click', function(){firstValue('*')});
 document.getElementById('divide').addEventListener('click', function(){firstValue('/')});
-document.getElementById('equals').addEventListener('click', secondValue);
+document.getElementById('equals').addEventListener('click', function(){secondValue(1)});
 
 //Event listeners for the AC, C, and +/- buttons
 document.getElementById('clear').addEventListener('click', function() {
     numberFrame.value = '0';
-    firstNumber = '0';
-    secondNumber = '0';
+    firstNumber = '';
+    secondNumber = '';
 })
 document.getElementById('backspace').addEventListener('click', function() {
 
